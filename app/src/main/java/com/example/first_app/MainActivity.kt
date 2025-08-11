@@ -14,8 +14,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material3.Button
@@ -36,9 +34,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.first_app.shopping_list.ShoppingListApp
+import com.example.first_app.counter_app.CounterApp
+import com.example.first_app.counter_app.CounterViewModel
 import com.example.first_app.ui.theme.First_appTheme
 import kotlin.math.roundToInt
+import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlin.random.Random
 
 class MainActivity : ComponentActivity() {
@@ -46,9 +46,11 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+            val viewModel: CounterViewModel = viewModel()
             First_appTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    ShoppingListApp(modifier = Modifier.padding(innerPadding))
+//                    ShoppingListApp(modifier = Modifier.padding(innerPadding))
+                    CounterApp(modifier = Modifier.padding(innerPadding), viewModel)
                 }
             }
         }
