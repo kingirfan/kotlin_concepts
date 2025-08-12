@@ -34,12 +34,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.first_app.counter_app.CounterApp
 import com.example.first_app.counter_app.CounterViewModel
 import com.example.first_app.ui.theme.First_appTheme
 import kotlin.math.roundToInt
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.first_app.json_retrofit.RecipeScreen
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+
+import com.example.first_app.navigation.FirstScreen
+import com.example.first_app.navigation.SecondScreen
 import kotlin.random.Random
 
 class MainActivity : ComponentActivity() {
@@ -52,12 +56,32 @@ class MainActivity : ComponentActivity() {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
 //                    ShoppingListApp(modifier = Modifier.padding(innerPadding))
 //                    CounterApp(modifier = Modifier.padding(innerPadding), viewModel)
-                    RecipeScreen(modifier = Modifier.padding(innerPadding))
+//                    RecipeScreen(modifier = Modifier.padding(innerPadding))
+                    MyApp(modifier = Modifier.padding(innerPadding))
                 }
             }
         }
     }
 
+    @Composable
+    fun MyApp(modifier: Modifier = Modifier) {
+        val navController = rememberNavController()
+        NavHost(navController = navController, startDestination = "firstScreen") {
+            composable("firstScreen") {
+                FirstScreen { name, age ->
+                    navController.navigate("secondScreen/$name/$age")
+                }
+            }
+            composable("secondScreen/{name}/{age}") {
+                val name = it.arguments?.getString("name") ?: "No Name"
+                val age = it.arguments?.getString("age") ?: "No Name"
+                print("ReceivedName : $name")
+                SecondScreen(name, age) {
+                    navController.navigate("firstScreen")
+                }
+            }
+        }
+    }
 
     @Composable
     fun UnitConverter(modifier: Modifier = Modifier) {
