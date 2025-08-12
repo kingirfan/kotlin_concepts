@@ -39,6 +39,7 @@ import com.example.first_app.counter_app.CounterViewModel
 import com.example.first_app.ui.theme.First_appTheme
 import kotlin.math.roundToInt
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.first_app.json_retrofit.RecipeScreen
 import kotlin.random.Random
 
 class MainActivity : ComponentActivity() {
@@ -50,7 +51,8 @@ class MainActivity : ComponentActivity() {
             First_appTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
 //                    ShoppingListApp(modifier = Modifier.padding(innerPadding))
-                    CounterApp(modifier = Modifier.padding(innerPadding), viewModel)
+//                    CounterApp(modifier = Modifier.padding(innerPadding), viewModel)
+                    RecipeScreen(modifier = Modifier.padding(innerPadding))
                 }
             }
         }
