@@ -41,6 +41,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.first_app.json_retrofit.RecipeApp
+import com.example.first_app.json_retrofit.RecipeScreen
 
 import com.example.first_app.navigation.FirstScreen
 import com.example.first_app.navigation.SecondScreen
@@ -52,12 +54,16 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             val viewModel: CounterViewModel = viewModel()
+            val navController = rememberNavController()
             First_appTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
 //                    ShoppingListApp(modifier = Modifier.padding(innerPadding))
 //                    CounterApp(modifier = Modifier.padding(innerPadding), viewModel)
 //                    RecipeScreen(modifier = Modifier.padding(innerPadding))
-                    MyApp(modifier = Modifier.padding(innerPadding))
+                    RecipeApp(
+                        modifier = Modifier.padding(innerPadding),
+                        navHostController = navController)
+//                    MyApp(modifier = Modifier.padding(innerPadding))
                 }
             }
         }
@@ -66,7 +72,7 @@ class MainActivity : ComponentActivity() {
     @Composable
     fun MyApp(modifier: Modifier = Modifier) {
         val navController = rememberNavController()
-        NavHost(navController = navController, startDestination = "firstScreen") {
+        NavHost(navController = navController, startDestination = "recipeScreen") {
             composable("firstScreen") {
                 FirstScreen { name, age ->
                     navController.navigate("secondScreen/$name/$age")
@@ -80,6 +86,10 @@ class MainActivity : ComponentActivity() {
                     navController.navigate("firstScreen")
                 }
             }
+            composable("recipeScreen") {
+//                RecipeScreen()
+            }
+
         }
     }
 
