@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     id("kotlin-parcelize")
+    id("com.google.devtools.ksp") version "2.0.21-1.0.25"
+
 }
 
 android {
@@ -42,7 +44,13 @@ android {
 
 dependencies {
 
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.room.ktx)
+    ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.core.ktx.v1160)
+    implementation(libs.ui)
+    implementation(libs.androidx.material)
     implementation(libs.retrofit)
     implementation(libs.retrofit2.converter.gson)
     implementation(libs.androidx.core.ktx)

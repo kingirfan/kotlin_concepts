@@ -20,8 +20,10 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -41,11 +43,15 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.first_app.counter_app.CounterApp
 import com.example.first_app.json_retrofit.RecipeApp
 import com.example.first_app.json_retrofit.RecipeScreen
 
 import com.example.first_app.navigation.FirstScreen
 import com.example.first_app.navigation.SecondScreen
+import com.example.first_app.room_db.HomeView
+import com.example.first_app.room_db.route.Navigation
+import com.example.first_app.shopping_list.ShoppingListApp
 import kotlin.random.Random
 
 class MainActivity : ComponentActivity() {
@@ -56,14 +62,16 @@ class MainActivity : ComponentActivity() {
             val viewModel: CounterViewModel = viewModel()
             val navController = rememberNavController()
             First_appTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+//                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
 //                    ShoppingListApp(modifier = Modifier.padding(innerPadding))
 //                    CounterApp(modifier = Modifier.padding(innerPadding), viewModel)
-//                    RecipeScreen(modifier = Modifier.padding(innerPadding))
-                    RecipeApp(
-                        modifier = Modifier.padding(innerPadding),
-                        navHostController = navController)
-//                    MyApp(modifier = Modifier.padding(innerPadding))
+//                    RecipeApp(
+//                        modifier = Modifier.padding(innerPadding),
+//                        navHostController = navController)
+////                    MyApp(modifier = Modifier.padding(innerPadding))
+//                }
+                Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
+                    Navigation()
                 }
             }
         }
