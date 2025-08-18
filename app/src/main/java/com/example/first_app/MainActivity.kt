@@ -26,11 +26,11 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableDoubleStateOf
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -52,6 +52,7 @@ import com.example.first_app.navigation.SecondScreen
 import com.example.first_app.room_db.HomeView
 import com.example.first_app.room_db.route.Navigation
 import com.example.first_app.shopping_list.ShoppingListApp
+import com.example.first_app.widgets.app_bar.AppBarView
 import kotlin.random.Random
 
 class MainActivity : ComponentActivity() {
@@ -71,7 +72,8 @@ class MainActivity : ComponentActivity() {
 ////                    MyApp(modifier = Modifier.padding(innerPadding))
 //                }
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-                    Navigation()
+//                    Navigation()
+                    AppBarView()
                 }
             }
         }
